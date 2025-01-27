@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ModelService } from '../../services/model.service';
+
 
 @Component({
   selector: 'app-model',
@@ -7,5 +9,9 @@ import { Component } from '@angular/core';
   styleUrl: './model.component.css'
 })
 export class ModelComponent {
+  model=inject(ModelService);
 
+  constructor(){  //permet d initialiser , est lance en first
+    console.log(this.model)
+  }
 }
