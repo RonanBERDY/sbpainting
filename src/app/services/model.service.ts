@@ -16,4 +16,13 @@ export class ModelService {
   private model = signal<Imodel[]>([]); //La propriété model n'est accessible qu'à l'intérieur de la classe ModelService.
 
   constructor() { }
+  register(id:string,element:HTMLDialogElement){
+    this.model.set([
+      ...this.model(),
+      {
+        id,element,
+      }
+    ]);
+    
+  }
 }

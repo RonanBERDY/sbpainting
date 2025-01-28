@@ -1,9 +1,10 @@
 <dialog
-  open=""
+#basedialog   
+  open="" 
   class="fixed z-50 inset-0 overflow-y-auto backdrop:bg-black/50 text-white min-w-96 w-3/6"
 >
   <div class="flex flex-col p-4 bg-secondary">
-    <!--Title-->
+    <!--Title qnd basedialog c une variable-- >
     <div class="flex justify-between items-center pb-4">
         <ng-content select="[heading]"></ng-content>
       
@@ -11,5 +12,5 @@
       <div class="modal-close cursor-pointer z-50">&#x2715;</div>
     </div>
     <ng-content></ng-content>
-  </div>
+ 
 </dialog>
