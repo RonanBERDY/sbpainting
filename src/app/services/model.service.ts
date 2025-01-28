@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-
+//un service permet de gerer les données et de les partager vers differents component
 // Une interface est comme un plan qui décrit à quoi un objet doit ressembler.
 interface Imodel {
   id: string; 
@@ -22,7 +22,16 @@ export class ModelService {
       {
         id,element,
       }
-    ]);
-    
-  }
+    ]);}
+  toggle(id:string){
+      const model=this.model().find((item)=> item.id === id);
+      if (!model) return; //on va pas plus loin si model est empty
+      if (model.element.open) {
+        model.element.close()
+      }
+      else {
+        model.element.showModal();
+      }
+    };
+  
 }

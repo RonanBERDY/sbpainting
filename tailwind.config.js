@@ -5,9 +5,11 @@ module.exports = {
     extend: {},
     fontFamily:{
         lora:["Lora"],
-
+    
     }
+    
   },
+
   plugins: [],
 }
 
