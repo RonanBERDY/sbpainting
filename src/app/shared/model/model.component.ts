@@ -20,4 +20,7 @@ export class ModelComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.model.register(this.id(),this.dialog().nativeElement)
   }
+  closeModel(){
+    this.model.toggle('auth')
+    }
 }

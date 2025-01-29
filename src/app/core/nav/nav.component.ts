@@ -14,4 +14,5 @@ export class NavComponent {
     $event.preventDefault();  //pour pas que l user soit rediriger vers une autre page
     this.model.toggle('auth')
   }
+  
 }
