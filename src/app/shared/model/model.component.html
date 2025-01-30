@@ -4,7 +4,9 @@
   class="fixed z-50 inset-0 overflow-y-auto backdrop:bg-black/50 text-white min-w-96 w-3/6"
 >
   <div (click)="$event.stopPropagation()" class="flex flex-col p-4 bg-secondary"> 
-    <!--Title and basedialog c une variable et le click en haut permet que si on click ca marche pas ici mais faut cliquer que tu la croix-- >
+    <!--Title and basedialog c une variable et le click 
+    en haut permet que si on click ca marche pas ici mais faut cliquer que tu la croix
+    le 1er ngcontent Il attend un élément avec l’attribut [heading] et le place dans la première div et l autre il prend tout le reste-- >
     <div class="flex justify-between items-center pb-4">
         <ng-content select="[heading]"></ng-content>
         <div (click)="$event.stopPropagation(); console.log('Click inside modal')" class="flex flex-col p-4 bg-secondary">
