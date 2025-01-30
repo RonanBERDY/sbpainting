@@ -13,18 +13,22 @@ interface Imodel {
 export class ModelService {
  
 
-  private model = signal<Imodel[]>([]); //La propriété model n'est accessible qu'à l'intérieur de la classe ModelService.
+  private models = signal<Imodel[]>([]); //La propriété model n'est accessible qu'à l'intérieur de la classe ModelService.
 
   constructor() { }
   register(id:string,element:HTMLDialogElement){
-    this.model.set([
-      ...this.model(),
+    this.models.set([
+      ...this.models(),
       {
         id,element,
       }
     ]);}
+  
+  unregister(id:string){
+      this.models.set(this.models().filter((element)=>element.id !== id ));}
+
   toggle(id:string){
-      const model=this.model().find((item)=> item.id === id);
+      const model=this.models().find((item)=> item.id === id);
       if (!model) return; //on va pas plus loin si model est empty
       if (model.element.open) {
         model.element.close()

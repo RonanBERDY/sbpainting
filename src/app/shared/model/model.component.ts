@@ -1,4 +1,4 @@
-import { Component, inject, input,viewChild,AfterViewInit,ElementRef } from '@angular/core';
+import { Component, inject, input,viewChild,AfterViewInit,ElementRef, OnDestroy } from '@angular/core';
 import { ModelService } from '../../services/model.service';
 
 
@@ -8,7 +8,7 @@ import { ModelService } from '../../services/model.service';
   templateUrl: './model.component.html',
   styleUrl: './model.component.css'
 })
-export class ModelComponent implements AfterViewInit {
+export class ModelComponent implements AfterViewInit, OnDestroy {
   model=inject(ModelService);
   id=input.required<string>();
   dialog=viewChild.required<ElementRef<HTMLDialogElement>>('basedialog'); //en gros on a dans le dom html une balise dialogue
@@ -23,4 +23,7 @@ export class ModelComponent implements AfterViewInit {
   closeModel(){
     this.model.toggle('auth')
     }
+  ngOnDestroy(): void {
+    this.model.unregister(this.id());
+  }
 }
