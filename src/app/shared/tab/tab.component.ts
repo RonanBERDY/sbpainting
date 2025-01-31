@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input,signal } from '@angular/core';
 
 @Component({
   selector: 'app-tab',
@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './tab.component.css'
 })
 export class TabComponent {
-
+  tabTitle=input('');
+  active=signal(false) //au debut tous sont falses
 }

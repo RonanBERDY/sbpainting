@@ -3,8 +3,13 @@
     <a
       class="block w-full rounded py-3 px-4 transition hover:text-white text-white bg-indigo-400"
       href="#"
-      >Login</a
+      (click)="selectTab(tab)"
+      [ngClass]="{
+      'hover:text-white': tab.active(),
+      'hover:text-indigo-400 bg-secondary': !tab.active()
+      }"
+      >{{tab.tabTitle()}}</a
     >}
- 
+
   </nav>
-<ng-content></ng-content>  
+<ng-content></ng-content>
