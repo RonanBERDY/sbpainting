@@ -5,8 +5,8 @@
       href="#"
       (click)="selectTab(tab)"
       [ngClass]="{
-      'hover:text-white': tab.active(),
-      'hover:text-indigo-400 bg-secondary': !tab.active()
+      'hover:text-indigo-400': !tab.active(),
+      'hover:text-white text-white bg-indigo-400': tab.active()
       }"
       >{{tab.tabTitle()}}</a
     >}

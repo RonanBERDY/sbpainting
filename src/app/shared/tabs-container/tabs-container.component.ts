@@ -21,13 +21,15 @@ export class TabsContainerComponent implements AfterContentInit {
     // you might do `this.tabs().find(...)`
     const activeTab = this.tabs().find(tab => tab.active()); //cherche un onglet actif
     if (!activeTab) {
-      this.selectTab(this.tabs()[1]);
+      this.selectTab(this.tabs()[0]);
     }
   }
 
   selectTab(tab: TabComponent) { //fait le toggle
     this.tabs().forEach(tab => tab.active.set(false));
     tab.active.set(true);
+
+    return false; //pour eviter de changer de link pour eviter le default event
   }
 }
 
