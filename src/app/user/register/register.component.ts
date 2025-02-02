@@ -1,9 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms'; //formbuilder c le container de form
+import { CommonModule } from '@angular/common'; //permet d importer jsonpipe
+
 
 @Component({
   selector: 'app-register',
-  imports: [ReactiveFormsModule,],
+  imports: [ReactiveFormsModule,CommonModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })

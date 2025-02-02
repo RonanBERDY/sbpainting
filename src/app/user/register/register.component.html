@@ -10,6 +10,16 @@
       minlength="3"
     /> <!-- ici on recupere name -->
   </div>
+  @if (form.controls.name.hasError('required')){
+  <p class="text-red-400">Field is required.</p>
+  } <!-- ici ca marche car quand on a fait le test avec json ca montrait pas l erreur minlenght -->
+  @if (form.controls.name.hasError('minlength')){
+    <p class="text-red-400">The value you inputted is
+       {{form.controls.name.getError('minlength').actualLength}}
+      characteres long. It must be at least
+      {{form.controls.name.getError('minlength').requiredLength}}
+    </p>
+    }
   <!-- Email -->
   <div class="mb-3">
     <label class="inline-block mb-2">Email</label>

@@ -8,10 +8,10 @@ import { NavComponent } from './core/nav/nav.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,AuthModelComponent,NavComponent],
+  imports: [AuthModelComponent,NavComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
- 
+
 }
