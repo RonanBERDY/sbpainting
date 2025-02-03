@@ -1,0 +1,23 @@
+<input
+      type="text"
+      class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
+      placeholder="Enter Name"
+      [formControl]="control()"
+    /> <!-- ici on recupere name -->
+
+  <div>
+    @if (control().touched && control().dirty){
+  @if ( control().hasError('required')){
+  <p class="text-red-400">Field is required.</p>
+  } <!-- ici ca marche car quand on a fait le test avec json ca montrait pas l erreur minlenght -->
+  @if ( control().hasError('minlength')){
+    <p class="text-red-400">The value you inputted is
+       {{control().getError('minlength').actualLength}}
+      characters long. It must be at least
+      {{control().getError('minlength').requiredLength}} characters long.
+    </p>
+    }}
+
+
+  </div>
+
