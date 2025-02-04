@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NgClass } from '@angular/common';
 
 @Component({
@@ -8,8 +8,8 @@ import { NgClass } from '@angular/common';
   styleUrl: './alert.component.css'
 })
 export class AlertComponent {
-  color=input('blue');
-  get bgColor(){
-    return (`bg-${this.color}-400`);
+  @Input() color: string = 'blue';
+  get bgColor() {
+    return `bg-${this.color}-400`
   }
 }
