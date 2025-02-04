@@ -1,5 +1,9 @@
-<form [formGroup]="form">    <!-- form group permet de bind relier entre les données et la vue -->
-  <!-- Name -->
+@if (showAlert()){
+<app-alert [color]="alertColor()">{{Alertmsg()}}</app-alert>
+}
+
+<form [formGroup]="form" (ngSubmit)="register()">    <!-- form group permet de bind relier entre les données form (minlenght 3 ...) et la vue -->
+  <!-- Name  et ngSubmit c est on lance un event quand on click sur submit -->
   <div class="mb-3">
     <label class="inline-block mb-2">Name</label>
     <app-input placeholder="Enter name" [control]="form.controls.name"></app-input>
