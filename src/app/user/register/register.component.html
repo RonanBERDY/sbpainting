@@ -2,44 +2,30 @@
   <!-- Name -->
   <div class="mb-3">
     <label class="inline-block mb-2">Name</label>
-    <app-input [control]="form.controls.name"></app-input>
+    <app-input placeholder="Enter name" [control]="form.controls.name"></app-input>
   <!-- Email -->
 </div>
   <div class="mb-3">
     <label class="inline-block mb-2">Email</label>
-    <input
-      type="email"
-      class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
-      placeholder="Enter Email"
-      formControlName="email"
-    />
+    <app-input placeholder="Enter email" [control]="form.controls.email" type="email"></app-input>
   </div>
 
   <!-- Password -->
   <div class="mb-3">
     <label class="inline-block mb-2">Password</label>
-    <input
-      type="password"
-      class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
-      placeholder="Password"
-      formControlName="password"
-    />
+    <app-input placeholder="Enter your Password" [control]="form.controls.password" type="password"></app-input>
   </div>
   <!-- Confirm Password -->
   <div class="mb-3">
     <label class="inline-block mb-2">Confirm Password</label>
-    <input
-      type="password"
-      class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
-      placeholder="Confirm Password"
-      formControlName="confirm_password"
-    />
+    <app-input placeholder="Confirm your Password" [control]="form.controls.confirm_password" type="password"></app-input>
   </div>
 
   <button
     type="submit"
     class="block w-full bg-indigo-400 text-white py-1.5 px-3 rounded transition hover:bg-indigo-500 disabled:opacity-50 disabled:bg-indigo-400"
-  >
+    [disabled]="!form.valid"
+    >
     Submit
   </button>
 </form>

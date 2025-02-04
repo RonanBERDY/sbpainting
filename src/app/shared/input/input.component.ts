@@ -9,5 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   styleUrl: './input.component.css'
 })
 export class InputComponent {
-  control=input.required<FormControl>();
+  control=input.required<FormControl>(); // on prend le control dans register
+  type=input("text");
+  placeholder=input("");
 }

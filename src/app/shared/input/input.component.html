@@ -1,7 +1,7 @@
 <input
-      type="text"
+      [type]="type()"
       class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
-      placeholder="Enter Name"
+      [placeholder]="placeholder()"
       [formControl]="control()"
     /> <!-- ici on recupere name -->
 
@@ -16,7 +16,19 @@
       characters long. It must be at least
       {{control().getError('minlength').requiredLength}} characters long.
     </p>
-    }}
+    }
+  @if ( control().hasError('email')){
+      <p class="text-red-400">You must enter a valid email.
+      </p>
+      }
+  @if ( control().hasError('pattern')){
+        <p class="text-red-400">Password must be 8 to 64 characters long and contains a mix of upper and lower case characters, one numeric and one special character.
+        </p>
+        }
+
+
+
+    }
 
 
   </div>

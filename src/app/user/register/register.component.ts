@@ -12,6 +12,6 @@ import { InputComponent } from '../../shared/input/input.component';
 export class RegisterComponent {
   fb=inject(FormBuilder);
   form=this.fb.nonNullable.group({
-    name:['',[Validators.required,Validators.minLength(3)]],email:['',[Validators.email]],password:['',[Validators.required, Validators.minLength(6)]],confirm_password:[''],//if age age:[18]
+    name:['',[Validators.required,Validators.minLength(3)]],email:['',[Validators.email]],password:['',[Validators.required, Validators.pattern(/((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{8,64})/)]],confirm_password:['',[Validators.required]],//if age age:[18] + regexr.com pour les pattern
   });
 }
