@@ -13,7 +13,9 @@ import { AlertComponent } from "../../shared/alert/alert.component";
 export class RegisterComponent {
   fb=inject(FormBuilder);
   form=this.fb.nonNullable.group({
-    name:['',[Validators.required,Validators.minLength(3)]],email:['',[Validators.email]],password:['',[Validators.required, Validators.pattern(/((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{8,64})/)]],confirm_password:['',[Validators.required]],//if age age:[18] + regexr.com pour les pattern
+    name:['',[Validators.required,Validators.minLength(3)]],email:['',[Validators.email]],
+    password:['',[Validators.required, Validators.pattern(/((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{8,64})/)]],
+    confirm_password:['',[Validators.required]],//if age age:[18] + regexr.com pour les pattern
   });
   showAlert=signal(false);
   Alertmsg=signal('please wait !');
