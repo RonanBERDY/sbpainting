@@ -4,6 +4,7 @@ import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideAnalytics, getAnalytics } from '@angular/fire/analytics';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { routes } from './app.routes';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore'
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }),
@@ -18,6 +19,7 @@ export const appConfig: ApplicationConfig = {
       measurementId: "G-5CLXMKN4LX"
     })
   ),provideAuth(()=>getAuth()),
-  provideAnalytics(()=>getAnalytics())
+  provideAnalytics(()=>getAnalytics()),
+  provideFirestore(()=>getFirestore()),
 ]
 };
