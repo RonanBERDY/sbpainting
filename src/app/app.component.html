@@ -1,7 +1,7 @@
 <app-nav></app-nav>
 
 <!-- Intro Section -->
-<section class="relative overflow-hidden mb-2"> 
+<section class="relative overflow-hidden mb-2">
   <!-- The video -->
   <video [autoplay]="true" [muted]="true" loop class="w-full h-full object-cover absolute z-0">
     <source src="video_intro.mp4" type="video/mp4">
@@ -14,8 +14,8 @@
     <div class="text-center px-20 py-60 w-full md:w-8/12 mx-auto">
       <h1 class="text-7xl font-bold uppercase mb-2">Stephane Berdy Paintings</h1>
       <p>
-        Sur commande. 
-        Coordonnées suivantes : 
+        Sur commande.
+        Coordonnées suivantes :
       </p>
       <a href="mailto:stephaneberdy@yahoo.fr">stephaneberdy&#64;yahoo.fr</a>
     </div>
@@ -56,7 +56,7 @@
 
         <!-- Name & Date -->
         <p class="mb-0">
-          Luis Ramirez &#183; 
+          Luis Ramirez &#183;
           <span class="text-gray-400">March 31, 2020</span>
         </p>
 
@@ -91,7 +91,7 @@
 
         <!-- Name & Date -->
         <p class="mb-0">
-          Luis Ramirez &#183; 
+          Luis Ramirez &#183;
           <span class="text-gray-400">March 31, 2020</span>
         </p>
 
@@ -126,7 +126,7 @@
 
         <!-- Name & Date -->
         <p class="mb-0">
-          Luis Ramirez &#183; 
+          Luis Ramirez &#183;
           <span class="text-gray-400">March 31, 2020</span>
         </p>
 
@@ -161,7 +161,7 @@
 
         <!-- Name & Date -->
         <p class="mb-0">
-          Luis Ramirez &#183; 
+          Luis Ramirez &#183;
           <span class="text-gray-400">March 31, 2020</span>
         </p>
 
@@ -196,7 +196,7 @@
 
         <!-- Name & Date -->
         <p class="mb-0">
-          Luis Ramirez &#183; 
+          Luis Ramirez &#183;
           <span class="text-gray-400">March 31, 2020</span>
         </p>
 
@@ -231,7 +231,7 @@
 
         <!-- Name & Date -->
         <p class="mb-0">
-          Luis Ramirez &#183; 
+          Luis Ramirez &#183;
           <span class="text-gray-400">March 31, 2020</span>
         </p>
 
@@ -242,6 +242,8 @@
 </section>
 
 <!-- Auth Modal -->
+@if (!(auth.authstatewithdelay$ | async)){
+  <app-auth-model></app-auth-model>
+}
 
-<app-auth-model></app-auth-model>
 

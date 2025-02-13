@@ -1,6 +1,7 @@
-import { Component,signal } from '@angular/core';
+import { Component,signal,inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AlertComponent } from "../../shared/alert/alert.component";
+import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-login',
@@ -13,12 +14,24 @@ export class LoginComponent {
     email:'',
     password:'',
   }
+  auth=inject(Auth);
   showAlert=signal(false);
-  Alertmsg=signal('please wait !');
-  alertColor=signal('blue');
-  login(){
+  Alertmsg=signal('');
+  alertColor=signal('');
+  inSubmission=signal(false)
+  async login(){
     this.showAlert.set(true);
     this.Alertmsg.set('please wait !');
     this.alertColor.set('blue');
+    this.inSubmission.set(true);
+    try{
+      await signInWithEmailAndPassword(this.auth,this.credentiales.email,this.credentiales.password);
+      this.showAlert.set(true);
+      this.Alertmsg.set("Successfully signed");
+      this.alertColor.set("green");
+    } catch(e){
+      this.showAlert.set(true);
+      this.Alertmsg.set("Error");
+      this.alertColor.set("red");}
   }
 }
