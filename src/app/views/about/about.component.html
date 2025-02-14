@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Artist Profile</title>
+  <!-- Tailwind CSS CDN -->
+
+</head>
+<body class="bg-gray-900 text-white">
+  <section class="container mx-auto py-1 px-4">
+    <!-- Flex container that stretches items to equal height on larger screens -->
+    <div class="flex flex-col md:flex-row items-stretch">
+      <!-- Left Side: Text Content -->
+      <div class="md:w-1/2 flex flex-col justify-center space-y-6">
+        <!-- Small title -->
+
+        <p class="text-2xl ">Get to know me</p>
+        <!-- Bold, larger catchphrase with a linked phrase -->
+        <h1 class="text-4xl md:text-5xl  font-bold">
+          Journey Beyond <a href="#" class="text-blue-400">the sea and ocean</a>
+        </h1>
+        <!-- Biography -->
+        <p class="text-base leading-relaxed">
+          Peintre autodidacte.
+        </p>
+        <p class="text-base leading-relaxed">
+          D'origine parisienne, il découvre la mer en 1971 lorsqu'il part vivre avec ses parent sur une presqu'ile hollandaise. Depuis cette époque il n'a cessé de naviguer sur des voiliers. Il peint d'abord des huiles sur toiles, essentiellement des natures mortes, puis les délaisse au profit d'aquarelles. Sa passion pour la mer et les bateaux l'emportent et il se spécialise dans les marines sauf commandes particulières.
+        </p>
+        <p class="text-base leading-relaxed">
+          Parallèlement, il a écrit et illustré un livre sur les sous-mariniers allemands de la seconde guerre mondiale, et un autre sur la marine Française pendant la même époque il pourrait être publié prochainement.
+        </p>
+        <!-- Contact Button -->
+        <button class="w-max px-6 py-3 bg-blue-500 hover:bg-blue-600 transition-colors rounded-full">
+          Contact Me
+        </button>
+      </div>
+      <!-- Right Side: Image Container -->
+      <div class="md:w-1/2 md:ml-8 mt-8 md:mt-0">
+        <!-- The container below is styled as a rectangle that stretches to match the left side's height -->
+        <div class="w-full h-full border-2 border-gray-700 rounded-lg overflow-hidden">
+          <img src="télécharger.jpg" alt="Artist Picture" class="w-full h-full object-cover">
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
+

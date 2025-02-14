@@ -3,10 +3,13 @@ import { ModelService } from '../../services/model.service';
 import { AuthService } from '../../services/auth.service';
 import { AsyncPipe } from '@angular/common';
 import { Auth,signOut } from '@angular/fire/auth';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-nav',
-  imports: [AsyncPipe,],
+  imports: [AsyncPipe,RouterLink,RouterLinkActive],
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.css'
 })

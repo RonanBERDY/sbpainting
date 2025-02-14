@@ -8,7 +8,7 @@ import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [AuthModelComponent,NavComponent,AsyncPipe],
+  imports: [AuthModelComponent,NavComponent,AsyncPipe,RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

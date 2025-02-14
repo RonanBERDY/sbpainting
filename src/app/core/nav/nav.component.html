@@ -2,20 +2,20 @@
 <header id="header" class="bg-secondary">
     <nav class="container mx-auto flex justify-start items-center py-8 px-4">
       <!-- App Name -->
-      <a class="text-3xl text-indigo-400 font-bold uppercase mr-4" href="index.html">Stephane Berdy Paintings</a>
+      <a class="text-3xl text-indigo-400 font-bold uppercase mr-4" routerLink="/">Stephane Berdy Paintings</a>
 
       <div class="flex flex-grow items-center">
         <!-- Primary Navigation -->
         <ul class="flex flex-row mt-1">
           @if (auth.authstate$ | async){
             <li>
-              <a class="px-2" href="#">Manage</a>
+              <a class="px-2" href="#" routerLink="/manage" routerLinkActive="text-indigo-400">Manage</a>
             </li>
             <li>
-              <a class="px-2" href="#">Upload</a>
+              <a class="px-2" href="#" routerLink="/upload" routerLinkActive="text-indigo-400">Upload</a>
             </li>
             <li>
-              <a class="px-2" href="#" (click)="logout($event)">Log out</a>
+              <a class="px-2" href="#" (click)="logout($event)" >Log out</a>
             </li>
           } @else {
             <li>
@@ -26,7 +26,7 @@
 
 
           <li>
-            <a class="px-2" href="about.html">About</a>
+            <a class="px-2" routerLink="/about" routerLinkActive="text-indigo-400">About</a>
           </li>
         </ul>
       </div>
