@@ -18,7 +18,7 @@ export class LoginComponent {
   showAlert=signal(false);
   Alertmsg=signal('');
   alertColor=signal('');
-  inSubmission=signal(false)
+  inSubmission=signal(false);
   async login(){
     this.showAlert.set(true);
     this.Alertmsg.set('please wait !');
@@ -32,6 +32,8 @@ export class LoginComponent {
     } catch(e){
       this.showAlert.set(true);
       this.Alertmsg.set("Error");
-      this.alertColor.set("red");}
+      this.alertColor.set("red");
+      this.inSubmission=signal(false);
+    }
   }
 }

@@ -25,7 +25,9 @@
         <p class="text-red-400">Password must be 8 to 64 characters long and contains a mix of upper and lower case characters, one numeric and one special character.
         </p>
         }
-
+  @if ( control().hasError('NoMatch')){
+          <p class="text-red-400">Passwords do not match.</p>
+          }
 
 
     }

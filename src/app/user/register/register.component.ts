@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common'; //permet d importer jsonpipe
 import { InputComponent } from '../../shared/input/input.component';
 import { AlertComponent } from "../../shared/alert/alert.component";
 import { AuthService } from '../../services/auth.service';
+import { Match } from './validators';
 
 
 @Component({
@@ -19,7 +20,10 @@ export class RegisterComponent {
     name:['',[Validators.required,Validators.minLength(3)]],email:['',[Validators.email]],
     password:['',[Validators.required, Validators.pattern(/((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{8,64})/)]],
     confirm_password:['',[Validators.required]],//if age age:[18] + regexr.com pour les pattern
-  });
+  },{
+    validators:[Match('password','confirm_password')], //global variable
+  }
+);
   showAlert=signal(false);
   Alertmsg=signal('please wait !');
   alertColor=signal('blue');
