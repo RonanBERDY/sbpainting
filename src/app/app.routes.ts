@@ -4,7 +4,7 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './views/home/home.component';
 import { AboutComponent } from './views/about/about.component';
 import { UploadComponent } from './views/upload/upload.component';
-
+import { PaintingsComponent } from './views/paintings/paintings.component';
 
 
 export const routes: Routes = [{
@@ -18,5 +18,9 @@ export const routes: Routes = [{
   {path:'upload',
     component:UploadComponent,
     data: {adminOnly : true }
+  },
+  {path:'paintings/:id',
+    component:PaintingsComponent,
+
   }
 ];
