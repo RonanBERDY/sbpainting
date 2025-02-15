@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Routes } from '@angular/router';
 import { HomeComponent } from './views/home/home.component';
 import { AboutComponent } from './views/about/about.component';
-
+import { UploadComponent } from './views/upload/upload.component';
 
 
 
@@ -13,6 +13,10 @@ export const routes: Routes = [{
   {path:'about',component:AboutComponent,},
   {path:'manage',
     component:ManageComponent,
+    data: {adminOnly : true }
+  },
+  {path:'upload',
+    component:UploadComponent,
     data: {adminOnly : true }
   }
 ];
