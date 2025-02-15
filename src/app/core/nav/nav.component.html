@@ -8,9 +8,9 @@
         <!-- Primary Navigation -->
         <ul class="flex flex-row mt-1">
           @if (auth.authstate$ | async){
-            <ng-container *ngIf="authSvc.email() === 'ronanberdy@yahoo.fr'">
+            <ng-container *ngIf="authSvc.email() === 'ronanberdy@yahoo.fr' ">
             <li>
-              <a class="px-2" href="#" routerLink="/manage" routerLinkActive="text-indigo-400">Manage</a>
+              <a class="px-2" href="#" routerLink="/manage" routerLinkActive="text-indigo-400" [queryParams]="{sort:'1'}">Manage</a>
             </li>
             <li>
               <a class="px-2" href="#" routerLink="/upload" routerLinkActive="text-indigo-400">Upload</a>
