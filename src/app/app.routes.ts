@@ -6,9 +6,13 @@ import { AboutComponent } from './views/about/about.component';
 
 
 
+
 export const routes: Routes = [{
   path: '',
   component:HomeComponent,},
   {path:'about',component:AboutComponent,},
-  {path:'manage',component:ManageComponent,}
+  {path:'manage',
+    component:ManageComponent,
+    data: {adminOnly : true }
+  }
 ];

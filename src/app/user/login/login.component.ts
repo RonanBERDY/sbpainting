@@ -2,7 +2,7 @@ import { Component,signal,inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AlertComponent } from "../../shared/alert/alert.component";
 import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
-
+import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-login',
   imports: [FormsModule, AlertComponent],
@@ -14,6 +14,7 @@ export class LoginComponent {
     email:'',
     password:'',
   }
+  authSvc   = inject(AuthService);
   auth=inject(Auth);
   showAlert=signal(false);
   Alertmsg=signal('');
@@ -27,8 +28,10 @@ export class LoginComponent {
     try{
       await signInWithEmailAndPassword(this.auth,this.credentiales.email,this.credentiales.password);
       this.showAlert.set(true);
+      this.authSvc.email.set(this.credentiales.email);
       this.Alertmsg.set("Successfully signed");
       this.alertColor.set("green");
+
     } catch(e){
       this.showAlert.set(true);
       this.Alertmsg.set("Error");
