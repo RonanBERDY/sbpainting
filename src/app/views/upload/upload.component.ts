@@ -3,8 +3,8 @@ import { EventBlockerDirective } from '../../shared/directives/event-blocker.dir
 import { NgClass } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validator, Validators } from '@angular/forms';
 import { InputComponent } from '../../shared/input/input.component';
-import { Storage } from '@angular/fire/storage';
-import { V4Options } from 'uuid';
+import { Storage, ref,uploadBytesResumable } from '@angular/fire/storage';
+import { v4 as uuid } from 'uuid';
 
 @Component({
   selector: 'app-upload',
@@ -32,6 +32,9 @@ export class UploadComponent {
   }
 
   uploadfile(){
-    const pngPath=`SBpainting/${this.file()?.name}`;
+    const picturefilename=uuid();
+    const pngPath=`SBpainting/${picturefilename}.png`;
+    const pictureref=ref(this.storage,pngPath);
+    uploadBytesResumable(pictureref, this.file() as File);
   }
 }
