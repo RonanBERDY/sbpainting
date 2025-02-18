@@ -4,7 +4,6 @@ import { AuthService } from '../../services/auth.service';
 import { AsyncPipe } from '@angular/common';
 import { Auth } from '@angular/fire/auth';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { LoginComponent } from '../../user/login/login.component';
 import { NgIf } from '@angular/common';
 
 @Component({

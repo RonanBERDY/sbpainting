@@ -5,7 +5,7 @@ import { provideAnalytics, getAnalytics } from '@angular/fire/analytics';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { routes } from './app.routes';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore'
-
+import { provideStorage, getStorage} from '@angular/fire/storage';
 
 
 export const appConfig: ApplicationConfig = {
@@ -23,5 +23,6 @@ export const appConfig: ApplicationConfig = {
   ),provideAuth(()=>getAuth()),
   provideAnalytics(()=>getAnalytics()),
   provideFirestore(()=>getFirestore()),
+  provideStorage(()=>getStorage()),
 ]
 };
