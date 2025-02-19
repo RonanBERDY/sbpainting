@@ -18,9 +18,10 @@ import { Router } from '@angular/router';
 import { serverTimestamp, Timestamp } from 'firebase/firestore';
 import { timestamp } from 'rxjs';
 import { Auth } from '@angular/fire/auth';
+import { PercentPipe } from '@angular/common';
 @Component({
   selector: 'app-upload',
-  imports: [EventBlockerDirective,NgClass,ReactiveFormsModule,InputComponent,AlertComponent ],
+  imports: [EventBlockerDirective,NgClass,ReactiveFormsModule,InputComponent,AlertComponent,PercentPipe  ],
   templateUrl: './upload.component.html',
   styleUrl: './upload.component.css'
 })

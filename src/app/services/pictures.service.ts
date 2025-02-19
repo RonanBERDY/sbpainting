@@ -1,5 +1,5 @@
 import { Injectable,inject } from '@angular/core';
-import { Firestore,addDoc,collection, query,where,getDocs } from '@angular/fire/firestore';
+import { Firestore,addDoc,collection, query,where,getDocs,doc,updateDoc } from '@angular/fire/firestore';
 import IPic from '../models/pictures.models';
 import { Auth } from '@angular/fire/auth';
 
@@ -24,5 +24,11 @@ export class PicturesService {
     const q=query(this.picturecollection,
        where('uid','==',this.auth.currentUser?.uid));
        return await getDocs(q);
+  }
+  async updatepic(id:string,title:string){
+    const picRef=doc(this.firestore,'SBpaintings', id);
+    return await updateDoc(picRef,{
+      title,
+    });
   }
 }
