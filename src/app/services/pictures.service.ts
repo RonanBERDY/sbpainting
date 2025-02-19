@@ -1,9 +1,9 @@
 import { Injectable,inject,signal } from '@angular/core';
-import { Firestore,addDoc,collection, query,where,getDocs,doc,updateDoc, deleteDoc,orderBy,limit,startAfter,QueryConstraint, QueryDocumentSnapshot } from '@angular/fire/firestore';
+import { Firestore,addDoc,collection, query,where,getDocs,doc,updateDoc,getDoc, deleteDoc,orderBy,limit,startAfter,QueryConstraint, QueryDocumentSnapshot } from '@angular/fire/firestore';
 import IPic from '../models/pictures.models';
 import { Auth } from '@angular/fire/auth';
 import { Storage,ref,deleteObject } from '@angular/fire/storage';
-
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class PicturesService {
   pagepic=signal<IPic[]>([]);
   lastdoc:QueryDocumentSnapshot | null =null;
   pendingrequest=false;
-
+  router = inject(Router);
 
 
   constructor() { }
@@ -71,8 +71,24 @@ export class PicturesService {
       filename : doc.get('filename'),
       pictureurl :doc.get('pictureurl'),
       timestamp : doc.get('timestamp'),
-      docId:doc.get('docId'),
+      docId:doc.id,
       uid:doc.get('uid'),
+      type:doc.get('type'),
+      dimension:doc.get('dimension'),
     }])})
+
+  }
+
+
+
+  async resolve(id: string) {
+    const snapshot = await getDoc(doc(this.firestore, 'SBpaintings', id));
+
+    if (!snapshot.exists()) {
+      this.router.navigate(['/']);
+
+      return null;
+    }
+    return snapshot.data() as IPic;
   }
 }

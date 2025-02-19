@@ -42,6 +42,8 @@ export class ManageComponent implements OnInit {
         pictureurl:data['pictureurl'],
         timestamp :data['timestamp'],
         uid:data['uid'],
+        dimension:data['dimension'],
+        type:data['type'],
       }]);
     });
   }

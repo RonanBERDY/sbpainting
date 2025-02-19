@@ -1,5 +1,5 @@
-import { Component, OnInit, OnDestroy,inject } from '@angular/core';
-import { PicturesService } from '../../services/pictures.service';
+import { PicturesService } from './../../services/pictures.service';
+import { Component, OnInit, OnDestroy,inject,input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 
@@ -13,15 +13,22 @@ import { RouterLink } from '@angular/router';
 })
 export class PicsListComponent implements OnInit,OnDestroy {
   pictureservice=inject(PicturesService);
+  scrollable=input(true);
 
   constructor(){
     this.pictureservice.getPics();
   }
   ngOnInit(): void {
-    window.addEventListener('scroll',this.handlescroll);
+    if (this.scrollable()){
+      window.addEventListener('scroll',this.handlescroll);
+    }
+
   }
   ngOnDestroy(): void {
-    window.removeEventListener('scroll',this.handlescroll)
+    if (this.scrollable()){
+      window.removeEventListener('scroll',this.handlescroll);
+    }
+    this.pictureservice.pagepic.set([])
   }
   handlescroll= ()=>{
     const { scrollTop,offsetHeight} = document.documentElement;

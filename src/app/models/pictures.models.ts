@@ -7,4 +7,6 @@ export default interface IPic{
   timestamp : Timestamp;
   docId?:string,
   uid:string,
+  dimension:string,
+  type:string,
 }

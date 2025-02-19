@@ -36,6 +36,8 @@ export class UploadComponent implements OnDestroy {
   private auth=inject(Auth);
   form=this.fb.nonNullable.group({
     title:['', [Validators.required,Validators.minLength(3)]],
+    dimension:['', [Validators.required,Validators.minLength(3)]],
+    type:['', [Validators.required,Validators.minLength(3)]],
 
   });
   storefile($event:Event){
@@ -94,6 +96,8 @@ export class UploadComponent implements OnDestroy {
           pictureurl,
           timestamp:serverTimestamp() as Timestamp,
           uid: this.auth.currentUser?.uid as string,
+          dimension:this.form.controls.dimension.value,
+          type:this.form.controls.type.value,
         };
 
         const picdocref= await this.picservice.createpicture(picture);
