@@ -1,5 +1,5 @@
-import { Injectable,inject } from '@angular/core';
-import { Firestore,addDoc,collection, query,where,getDocs,doc,updateDoc, deleteDoc } from '@angular/fire/firestore';
+import { Injectable,inject,signal } from '@angular/core';
+import { Firestore,addDoc,collection, query,where,getDocs,doc,updateDoc, deleteDoc,orderBy,limit,startAfter,QueryConstraint, QueryDocumentSnapshot } from '@angular/fire/firestore';
 import IPic from '../models/pictures.models';
 import { Auth } from '@angular/fire/auth';
 import { Storage,ref,deleteObject } from '@angular/fire/storage';
@@ -13,6 +13,11 @@ export class PicturesService {
   private picturecollection=collection(this.firestore,'SBpaintings');
   private auth=inject(Auth);
   storage=inject(Storage);
+  pagepic=signal<IPic[]>([]);
+  lastdoc:QueryDocumentSnapshot | null =null;
+  pendingrequest=false;
+
+
 
   constructor() { }
 
@@ -40,5 +45,34 @@ export class PicturesService {
     const docRef = doc(this.firestore,'SBpaintings',pic.docId as string);
     console.log(docRef);
     await deleteDoc(docRef);
+  }
+
+  async getPics(){
+    if (this.pendingrequest) return ;
+
+    this.pendingrequest=true;
+    const queryParams: QueryConstraint[]=[
+      orderBy('timestamp','desc'),limit(6),
+    ];
+    if (this.pagepic().length){
+      queryParams.push(
+        startAfter(this.lastdoc)
+      );
+    }
+
+    const q=query(this.picturecollection,...queryParams);
+    const snapshot=await getDocs(q);
+    this.pendingrequest=false;
+
+    if (!snapshot.docs.length) return;
+    this.lastdoc=snapshot.docs[snapshot.docs.length -1];
+    snapshot.docs.forEach((doc)=>{this.pagepic.set([...this.pagepic(),{
+      title : doc.get('title'),
+      filename : doc.get('filename'),
+      pictureurl :doc.get('pictureurl'),
+      timestamp : doc.get('timestamp'),
+      docId:doc.get('docId'),
+      uid:doc.get('uid'),
+    }])})
   }
 }

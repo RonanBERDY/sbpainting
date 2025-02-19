@@ -8,7 +8,7 @@
         <!-- Primary Navigation -->
         <ul class="flex flex-row mt-1">
           @if (auth.authstate$ | async){
-            <ng-container *ngIf="authSvc.email() === 'ronanberdy@yahoo.fr' ">
+            <ng-container >
             <li>
               <a class="px-2" [routerLinkActiveOptions]="{ exact: true }" href="#" routerLink="/manage" routerLinkActive="text-indigo-400" [queryParams]="{sort:'1'}" >Manage</a>
             </li>
