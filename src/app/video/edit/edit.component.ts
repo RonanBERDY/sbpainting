@@ -1,4 +1,4 @@
-import { Component,input,inject, effect,signal } from '@angular/core';
+import { Component,input,inject, effect,signal,output } from '@angular/core';
 import { ModelComponent } from "../../shared/model/model.component";
 import IPic from '../../models/pictures.models';
 import { ReactiveFormsModule,Validators,FormBuilder } from '@angular/forms';
@@ -6,6 +6,7 @@ import { InputComponent } from '../../shared/input/input.component';
 import { AlertComponent } from '../../shared/alert/alert.component';
 import { NgClass } from '@angular/common';
 import { PicturesService } from '../../services/pictures.service';
+import { ModelService } from '../../services/model.service';
 @Component({
   selector: 'app-edit',
   imports: [ModelComponent,ReactiveFormsModule,InputComponent,AlertComponent,NgClass],
@@ -24,13 +25,18 @@ export class EditComponent {
       effect(()=>{
         this.form.controls.id.setValue(this.activepic()?.docId ?? '');
         this.form.controls.title.setValue(this.activepic()?.title ?? '');
-      });
+        this.inSubmission.set(false);
+        this.showAlert.set(false);
+      },{allowSignalWrites:true});
     }
     showAlert=signal(false);
     Alertmsg=signal('please wait !');
     alertColor=signal('blue');
     inSubmission=signal(false);
-    picservice=inject(PicturesService)
+    picservice=inject(PicturesService);
+    model=inject(ModelService);
+    update=output<IPic>();
+
     async submit(){
       this.showAlert.set(true);
       this.Alertmsg.set('please wait !');
@@ -47,5 +53,19 @@ export class EditComponent {
       this.inSubmission.set(false);
       return;
       }
+      const updatedPic = this.activepic();
+      if (updatedPic){
+        updatedPic.title=this.form.controls.title.value;
+        this.update.emit(updatedPic) ;
+      }
+
+      this.showAlert.set(true);
+      this.Alertmsg.set('Success !');
+      this.alertColor.set('green');
+      this.inSubmission.set(false);
+      setTimeout(() => {
+        this.showAlert.set(false);
+        this.model.toggle('editpic');
+      }, 3000);
     }
 }

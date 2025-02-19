@@ -1,4 +1,4 @@
-import { Component,inject, OnInit,signal } from '@angular/core';
+import { Component,inject, OnInit,signal,computed } from '@angular/core';
 import { RouterLink, Router, ActivatedRoute,Params } from '@angular/router';
 import { PicturesService } from '../../services/pictures.service';
 import IPic from '../../models/pictures.models';
@@ -50,5 +50,32 @@ export class ManageComponent implements OnInit {
     $event.preventDefault();
     this.activepic.set(pic);
     this.model.toggle('editpic');
+  }
+  update($event:IPic){
+    const currentpic=this.pics();
+    currentpic.forEach((element,index)=>{
+      if (element.docId == $event.docId){
+        currentpic[index].title=$event.title;
+      }
+    });
+    this.pics.set(currentpic);
+  }
+
+  orderedpic=computed(()=>{
+    return this.pics().sort((a,b)=>{return this.order()==='1' ?
+      a.timestamp.toMillis()-b.timestamp.toMillis() : b.timestamp.toMillis()-a.timestamp.toMillis(); });
+  });
+
+  deletepainting($event:Event,pic:IPic){
+    $event.preventDefault();
+    this.picservice.deletepic(pic);
+
+    const currentpic=this.pics();
+    currentpic.forEach((element,index)=>{
+      if (element.docId == pic.docId){
+        currentpic.splice(index,1);
+      }
+    });
+    this.pics.set(currentpic);
   }
 }

@@ -1,7 +1,7 @@
 <!-- Top Bar -->
 <section class="container mx-auto my-8 bg-secondary p-6">
   <div class="rounded relative flex justify-between">
-    <a href="#" class="bg-indigo-400 text-white py-4 px-10 text-xl" routerLink="/upload">Upload Videos</a>
+    <a href="#" class="bg-indigo-400 text-white py-4 px-10 text-xl" routerLink="/upload">Upload Paintings</a>
 
     <!-- Sort Image -->
     <select (change)="sort($event)" class="text-black px-8 text-xl outline-none appearance-none">
@@ -15,9 +15,10 @@
 <div class="container mx-auto my-8">
   <!-- Image List -->
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-    <div class="mt-6 rounded-tl-2xl rounded-br-2xl shadow-xl bg-secondary flex flex-col justify-start">
-      @for(pic of pics(); track pic.docId){
+
+      @for(pic of orderedpic(); track pic.docId){
       <!-- Image -->
+      <div class="mt-6 rounded-tl-2xl rounded-br-2xl shadow-xl bg-secondary flex flex-col justify-start">
       <a href="#">
         <img class="card-img-top rounded-tl-2xl w-full" [src]=pic.pictureurl alt="Image">
       </a>
@@ -41,14 +42,14 @@
           <span class="material-icons text-base">build</span>
         </a>
         <a href="#" class="flex-1 p-2 rounded-br-2xl transition hover:text-indigo-400">
-          <span class="material-icons text-base">delete</span>
+          <span class="material-icons text-base" (click)="deletepainting($event,pic)">delete</span>
         </a>
       </div>
 
-
+    </div>
       }
 
-    </div>
+
   </div>
 </div>
-<app-edit [activepic]="activepic()"></app-edit>
+<app-edit [activepic]="activepic()" (update)="update($event)"></app-edit>
