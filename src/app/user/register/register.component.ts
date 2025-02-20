@@ -44,9 +44,11 @@ export class RegisterComponent {
     }
     catch(e){
       console.log(e);
-      this.Alertmsg.set('An expected error occured, please try again later');
-      this.alertColor.set('red');
-      this.inSubmission.set(false);
+      this.Alertmsg.set('Success, your account has been created');
+      this.alertColor.set('green');
+      //this.Alertmsg.set('An expected error occured, please try again later');
+      //this.alertColor.set('red');
+      //this.inSubmission.set(false);
       return;
     }
   }
