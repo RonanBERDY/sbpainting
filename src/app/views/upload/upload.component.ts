@@ -44,7 +44,7 @@ export class UploadComponent implements OnDestroy {
     this.isdragover.set(false);
 
     this.file.set(($event as DragEvent).dataTransfer?.files.item(0) ?? null );
-    if (this.file()?.type !== "image/png") return;
+    if (this.file()?.type !== "image/webp") return;
     this.form.controls.title.setValue(this.file()?.name.replace(/\.[^/.]+$/,'') ?? '')
     this.nextstep.set(true);
   }
@@ -61,8 +61,8 @@ export class UploadComponent implements OnDestroy {
     this.showAlert.set(true);
 
     const picturefilename=uuid();
-    const pngPath=`SBpainting/${picturefilename}.png`;
-    const pictureref=ref(this.storage,pngPath);
+    const webpPath=`SBpainting/${picturefilename}.webp`;
+    const pictureref=ref(this.storage,webpPath);
     try{this.pituretask = uploadBytesResumable(pictureref, this.file() as File);
       fromTask(this.pituretask).subscribe({
         next: (snapshot: any) => {
@@ -87,7 +87,7 @@ export class UploadComponent implements OnDestroy {
 
           const picture={
             title : this.form.controls.title.value,
-            filename : `${picturefilename}.png`,
+            filename : `${picturefilename}.webp`,
             pictureurl,
             timestamp:serverTimestamp() as Timestamp,
             uid: this.auth.currentUser?.uid as string,
