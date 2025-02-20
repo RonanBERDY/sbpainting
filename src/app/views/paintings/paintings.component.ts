@@ -17,6 +17,7 @@ export class PaintingsComponent implements OnInit{
   ngOnInit(): void {
     this.route.data.subscribe((data) => {
       this.pic.set(data['pic']);
+      window.scrollTo(0, 0);
       // Ici, pas besoin d'initialiser un player vidéo
       console.log('Donnée painting:', this.pic());
     });
