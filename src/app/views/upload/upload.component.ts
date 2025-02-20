@@ -63,54 +63,65 @@ export class UploadComponent implements OnDestroy {
     const picturefilename=uuid();
     const pngPath=`SBpainting/${picturefilename}.png`;
     const pictureref=ref(this.storage,pngPath);
+    try{this.pituretask = uploadBytesResumable(pictureref, this.file() as File);
+      fromTask(this.pituretask).subscribe({
+        next: (snapshot: any) => {
+          this.form.disable();
 
-    this.pituretask = uploadBytesResumable(pictureref, this.file() as File);
+          const progress = snapshot.bytesTransferred / snapshot.totalBytes;
 
+          this.percentage.set(progress);
+        },
+        error: (error: any) => {
+          this.form.enable();
 
+          this.alertColor.set('red');
+          this.Alertmsg.set('Upload failed! Please try again later.');
+          this.inSubmission.set(false);
+          this.showPercentage.set(false);
 
+          console.error(error);
+        },
+        complete: async () => {
+          const pictureurl = await getDownloadURL(pictureref);
 
-    fromTask(this.pituretask).subscribe({
-      next: (snapshot: any) => {
-        this.form.disable();
+          const picture={
+            title : this.form.controls.title.value,
+            filename : `${picturefilename}.png`,
+            pictureurl,
+            timestamp:serverTimestamp() as Timestamp,
+            uid: this.auth.currentUser?.uid as string,
+            dimension:this.form.controls.dimension.value,
+            type:this.form.controls.type.value,
+          };
 
-        const progress = snapshot.bytesTransferred / snapshot.totalBytes;
+          const picdocref= await this.picservice.createpicture(picture);
 
-        this.percentage.set(progress);
-      },
-      error: (error: any) => {
-        this.form.enable();
+          this.alertColor.set('green');
+          this.Alertmsg.set(
+            'Success! Your clip is now ready to share with the world.'
+          );
+          this.showPercentage.set(false);
+          setTimeout(()=>{this.router.navigate(['paintings',picdocref.id]);},1000);
+
+        },
+      });
+
+    }
+    catch(e){
+      this.form.enable();
 
         this.alertColor.set('red');
         this.Alertmsg.set('Upload failed! Please try again later.');
         this.inSubmission.set(false);
         this.showPercentage.set(false);
+    }
 
-        console.error(error);
-      },
-      complete: async () => {
-        const pictureurl = await getDownloadURL(pictureref);
 
-        const picture={
-          title : this.form.controls.title.value,
-          filename : `${picturefilename}.png`,
-          pictureurl,
-          timestamp:serverTimestamp() as Timestamp,
-          uid: this.auth.currentUser?.uid as string,
-          dimension:this.form.controls.dimension.value,
-          type:this.form.controls.type.value,
-        };
 
-        const picdocref= await this.picservice.createpicture(picture);
 
-        this.alertColor.set('green');
-        this.Alertmsg.set(
-          'Success! Your clip is now ready to share with the world.'
-        );
-        this.showPercentage.set(false);
-        setTimeout(()=>{this.router.navigate(['paintings',picdocref.id]);},1000);
 
-      },
-    });
+
   }
   ngOnDestroy() {
     this.pituretask?.cancel();
