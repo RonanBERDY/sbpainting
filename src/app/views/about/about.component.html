@@ -31,9 +31,11 @@
           Parallèlement, il a écrit et illustré un livre sur les sous-mariniers allemands de la seconde guerre mondiale, et un autre sur la marine Française pendant la même époque il pourrait être publié prochainement.
         </p>
         <!-- Contact Button -->
-        <button class="w-max px-6 py-3 bg-blue-500 hover:bg-blue-600 transition-colors rounded-full" >
+        <button (click)="toggleContact()" class="w-max px-6 py-3 bg-blue-500 hover:bg-blue-600 transition-colors rounded-full" >
           Contact details : stephaneberdy&#64;yahoo.com
+
         </button>
+        <app-contact *ngIf="showContact"></app-contact>
       </div>
       <!-- Right Side: Image Container -->
       <div class="md:w-1/2 md:ml-8 mt-8 md:mt-0">

@@ -19,6 +19,7 @@
     "@angular/platform-browser": "^19.1.0",
     "@angular/platform-browser-dynamic": "^19.1.0",
     "@angular/router": "^19.1.0",
+    "@emailjs/browser": "^4.4.1",
     "@types/uuid": "^10.0.0",
     "firebase": "^11.3.0",
     "firebase-admin": "^13.1.0",

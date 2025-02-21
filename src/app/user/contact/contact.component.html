@@ -1,0 +1,26 @@
+
+
+
+<form  (submit)="sendEmail($event)">
+
+  <!-- Email (template variable) -->
+  <div class="mb-3" class="flex flex-col p-4 bg-secondary">
+    <label class="inline-block mb-2">Name</label>
+    <input type="text" name="user_name">
+  </div>
+  <!-- Password, name c est l id -->
+  <div class="mb-3" class="flex flex-col p-4 bg-secondary">
+    <label class="inline-block mb-2">Email</label>
+    <input type="email" name="user_email">
+  </div>
+  <div class="mb-3" class="flex flex-col p-4 bg-secondary">
+    <label class="inline-block mb-2">Message</label>
+    <textarea name="message"></textarea>
+  </div>
+  <button
+    type="submit"
+    class="block w-full bg-indigo-400 text-white py-1.5 px-3 rounded transition hover:bg-indigo-500 disabled:opacity-50 disabled:bg-indigo-400"
+    >
+    Submit
+  </button>
+</form>
