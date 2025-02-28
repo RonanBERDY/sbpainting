@@ -1,25 +1,29 @@
+<form #loginForm="ngForm" (submit)="sendEmail($event)">
+@if (showAlert()){
+  <app-alert [color]="alertColor()">{{Alertmsg()}}</app-alert>
+  }
 
 
-
-<form (submit)="sendEmail($event)">
   <!-- Name Field -->
-  <div class="mb-3 flex flex-col p-4 bg-secondary">
-    <label class="inline-block mb-2 text-black">Name</label>
-    <input type="text" name="user_name" class="text-black">
+  <div class="mb-3 flex flex-col p-4 bg-secondary" [formGroup]="form">
+    <label class="inline-block mb-2 ">Name</label>
+    <app-input placeholder="Enter your name" [control]="form.controls.user_name" type="user_name"></app-input>
   </div>
   <!-- Email Field -->
   <div class="mb-3 flex flex-col p-4 bg-secondary">
-    <label class="inline-block mb-2 text-black">Email</label>
-    <input type="email" name="user_email" class="text-black">
+    <label class="inline-block mb-2 ">Email</label>
+    <app-input placeholder="Enter your email" [control]="form.controls.user_email" type="user_email"></app-input>
+
   </div>
   <!-- Message Field -->
   <div class="mb-3 flex flex-col p-4 bg-secondary">
-    <label class="inline-block mb-2 text-black">Message</label>
+    <label class="inline-block mb-2 ">Message</label>
     <textarea name="message" class="text-black"></textarea>
   </div>
   <button
     type="submit"
-    class="block w-full bg-indigo-400 text-white py-1.5 px-3 rounded transition hover:bg-indigo-500 disabled:opacity-50 disabled:bg-indigo-400">
+    class="block w-full bg-indigo-400 text-white py-1.5 px-3 rounded transition hover:bg-indigo-500 disabled:opacity-50 disabled:bg-indigo-400"
+    [disabled]="!form.valid || inSubmission() ">
     Submit
   </button>
 </form>
