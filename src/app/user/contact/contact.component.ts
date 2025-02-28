@@ -14,7 +14,7 @@ export class ContactUsComponent {
   fb=inject(FormBuilder);
   form=this.fb.nonNullable.group({
       user_name:['',[Validators.required,Validators.minLength(3)]],user_email:['',[Validators.email]],
-      //if age age:[18] + regexr.com pour les pattern
+      //if age age:[18] + regexr.com pour les pattern test
     }
   );
   public sendEmail(e: Event) {
