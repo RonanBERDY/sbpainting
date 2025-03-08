@@ -8,17 +8,17 @@
       <span>{{pic()?.dimension ?? ''}}</span>
     </div>
     <span>{{pic()?.type ?? ''}}</span>
-    <!-- Video Editor -->
+
     <div class="relative">
-      <!-- Video Player -->
+
       <img class="card-img-top rounded-tl-2xl w-full" [src]="pic()?.pictureurl ?? ''" crossorigin>
     </div>
   </div>
 </section>
 
-<!-- More Clips -->
+
 <div class="container mx-auto my-8">
-  <h2 class="mt-6 text-2xl">More Clips</h2>
+  <h2 class="mt-6 text-2xl">More Paintings</h2>
 
   <app-pics-list [scrollable]="false"></app-pics-list>
 </div>
